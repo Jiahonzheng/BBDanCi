@@ -1,13 +1,11 @@
-const fetch = (word, callback, time) => {
+const fetch = (word, callback) => {
   wx.request({
-    url: 'https://api.shanbay.com/bdc/search/?word=' + word.content,
+    url: 'https://api.shanbay.com/bdc/search/?word=' + word,
     method: 'GET',
     success: function (res) {
-      var result = res.data.data;
-      console.log(result);
-      setTimeout(function () {
-        callback(result);
-      },time);
+      var data = res.data;
+
+      callback(data);
     },
     fail: function () {
 
