@@ -20,16 +20,23 @@ Page({
   // 载入当前单词
   onLoad: function () {
     var index = this.getIndex();
+    var nextIndex = index;
     var word = list.wordList[index];
 
     this.data.checkedWords.push(index);
 
     this.setData({
-      index: index,
-      content: word.content,
-      definition: word.definition,
-      pron: word.pron
-    });
+      content: word.content
+    })
+
+    fetch(word.content, this.fetchCallback);
+
+    // this.setData({
+    //   index: index,
+    //   content: word.content,
+    //   definition: word.definition,
+    //   pron: word.pron
+    // });
   },
 
   // 播放单词语音
@@ -58,7 +65,7 @@ Page({
       nextButtonDisabled: true
     })
 
-    fetch(word, this.fetchCallback, 500);
+    fetch(word.content, this.fetchCallback);
   },
 
   // 获取单词Index
@@ -73,15 +80,18 @@ Page({
   },
 
   // 请求回调函数
-  fetchCallback: function (word) {
-    this.setData({
-      index: this.data.nextIndex,
-      content: word.content,
-      definition: word.definition,
-      pron: word.pron,
-      audio: word.audio,
-      definitionShowed: false,
-      nextButtonDisabled: false
-    })
+  fetchCallback: function (data) {
+    var self = this;
+    setTimeout(function () {
+      self.setData({
+        index: self.data.nextIndex,
+        content: data.data.content,
+        definition: data.data.definition,
+        pron: data.data.pron,
+        audio: data.data.audio,
+        definitionShowed: false,
+        nextButtonDisabled: false
+      });
+    }, 500);
   }
 })
