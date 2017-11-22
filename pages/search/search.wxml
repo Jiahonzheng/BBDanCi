@@ -1,5 +1,5 @@
 <view class="container">
   <view class="input-container">
-    <input class="input-search" bindconfirm="search" placeholder="请输入您要查询的单词" type="text" />
+    <input class="input-search" bindconfirm="search" placeholder="请输入您要查询的单词" type="text" value="{{content}}" auto-focus="true"/>
   </view>
 </view>

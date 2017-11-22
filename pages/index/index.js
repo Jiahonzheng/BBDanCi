@@ -1,6 +1,6 @@
 var list = require('../../data/wordList.js');
 var fetch = require('../../utils/fetch.js');
-var audio = require('../../utils/audio.js')
+var audio = require('../../utils/audio.js');
 
 Page({
   // 页面数据
@@ -30,13 +30,6 @@ Page({
     })
 
     fetch(word.content, this.fetchCallback);
-
-    // this.setData({
-    //   index: index,
-    //   content: word.content,
-    //   definition: word.definition,
-    //   pron: word.pron
-    // });
   },
 
   // 播放单词语音
